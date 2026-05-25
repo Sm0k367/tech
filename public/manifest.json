@@ -1,0 +1,9 @@
+{
+  "name": "Epic Tech AI • Cinematic AI Studio",
+  "short_name": "Epic AI Studio",
+  "icons": [{ "src": "/logo.svg", "sizes": "512x512", "type": "image/svg+xml" }],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0a0a0a",
+  "background_color": "#020205"
+}

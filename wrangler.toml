@@ -1,0 +1,26 @@
+name = "epic-tech-ai-studio"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+pages_build_output_dir = "dist"
+
+[[kv_namespaces]]
+binding = "KV"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "epic-ai-db"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "epic-ai-media"
+
+[[vectorize_indexes]]
+binding = "VECTORIZE"
+index_name = "character-memory"
+
+[ai]
+binding = "AI"
+
+[[images]]
+binding = "IMAGES"
