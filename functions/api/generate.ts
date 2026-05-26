@@ -15,11 +15,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     const ai = new Ai(context.env.AI);
 
-    // Generate image using FLUX.1 via Cloudflare AI
+    // Generate image using FLUX.1 via Cloudflare AI - optimized for cinematic output
     const imageResponse = await ai.run('@cf/black-forest-labs/flux-1-schnell', {
-      prompt: `Cinematic, hollywood film still, dramatic lighting, ${prompt}, epic composition, anamorphic lens, 8k, highly detailed, film grain`,
-      num_steps: 20,
+      prompt: `Cinematic masterpiece, hollywood film still, ${prompt}, dramatic lighting, anamorphic lens flare, film grain, moody atmosphere, epic composition, highly detailed, 8k, cinematic color grading`,
+      num_steps: 28,
       guidance: 7.5,
+      width: 1280,
+      height: 720,
     });
 
     // Convert to base64 or upload to R2

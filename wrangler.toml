@@ -1,11 +1,9 @@
 name = "tech"
+account_id = "4f00441f1f72053ee62f67d115615dc2"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
 pages_build_output_dir = "dist"
-
-# Cloudflare Account (add your Account ID here if deploying from CI)
-# account_id = "your-account-id-here"
 
 [[kv_namespaces]]
 binding = "KV"
