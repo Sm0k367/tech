@@ -1,12 +1,13 @@
 {
   "name": "epic-tech-ai-cinematic-studio",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=tech",
-    "cf:dev": "wrangler pages dev --compatibility-flags nodejs_compat",
+    "cf:dev": "wrangler pages dev dist --compatibility-flags nodejs_compat",
     "deploy": "npm run cf:deploy"
   },
   "dependencies": {
