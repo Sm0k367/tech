@@ -5,13 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 # Required for Pages + Functions
 pages_build_output_dir = "dist"
 
-[observability]
-enabled = true
-
-[observability.logs]
-enabled = true
-
-# Bindings
+# Bindings (everything else stays the same)
 [[kv_namespaces]]
 binding = "KV"
 
