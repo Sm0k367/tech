@@ -2,24 +2,19 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# Pages specific
+# For Cloudflare Pages
 pages_build_output_dir = "dist"
 
 [observability]
 enabled = true
 
-# ========================
-# Bindings (remove any that cause issues)
-# ========================
-
+# Bindings - configure these in the Pages dashboard instead for best results
 [[kv_namespaces]]
 binding = "KV"
-# id = ""   # Better to set this in the Cloudflare Dashboard
 
 [[d1_databases]]
 binding = "DB"
 database_name = "epic-ai-db"
-# database_id = ""   # Set in Dashboard
 
 [[r2_buckets]]
 binding = "R2"
@@ -31,5 +26,3 @@ index_name = "character-memory"
 
 [ai]
 binding = "AI"
-
-# [images]   ← Removed (not supported on Pages via wrangler.toml)
