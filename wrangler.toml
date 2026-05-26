@@ -2,8 +2,11 @@ name = "tech"
 compatibility_date = "2025-05-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Required for Cloudflare Pages Functions
+# Required for Cloudflare Pages + Functions
 pages_build_output_dir = "dist"
+
+# Account ID for this project (used by wrangler)
+account_id = "4f00441f1f72053ee62f67d115615dc2"
 
 [[kv_namespaces]]
 binding = "KV"
