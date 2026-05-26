@@ -1,11 +1,9 @@
-name = "ai-studio"
+name = "epic-tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# Required for Pages + Functions
 pages_build_output_dir = "dist"
 
-# Bindings (everything else stays the same)
 [[kv_namespaces]]
 binding = "KV"
 
