@@ -8,3 +8,21 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.6);
 }
+
+/* Neon glow effects */
+.neon-purple {
+  text-shadow: 0 0 10px #c026d3, 0 0 20px #c026d3;
+}
+
+.neon-cyan {
+  text-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
+}
+
+/* Smooth dark theme */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "kern" 1, "liga" 1, "tnum" 1;
+}
