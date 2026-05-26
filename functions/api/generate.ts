@@ -1,47 +1,61 @@
 import { Ai } from '@cloudflare/ai';
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { prompt, turnstileToken } = await context.request.json();
-
-  if (!prompt) {
-    return Response.json({ success: false, error: 'Prompt is required' }, { status: 400 });
-  }
-
   try {
-    // Simulate Turnstile validation (in production use real validation)
-    if (turnstileToken === null) {
-      console.log('Turnstile token missing - production would validate here');
+    const { prompt, turnstileToken } = await context.request.json();
+
+    if (!prompt || typeof prompt !== 'string') {
+      return Response.json({ success: false, error: 'Prompt is required' }, { status: 400 });
+    }
+
+    // TODO: Add real Turnstile validation in production
+    if (!turnstileToken) {
+      console.warn('Turnstile token missing');
     }
 
     const ai = new Ai(context.env.AI);
 
-    // Generate image using FLUX.1 via Cloudflare AI - optimized for cinematic output
+    // FLUX.1-schnell parameters (correct format)
     const imageResponse = await ai.run('@cf/black-forest-labs/flux-1-schnell', {
-      prompt: `Cinematic masterpiece, hollywood film still, ${prompt}, dramatic lighting, anamorphic lens flare, film grain, moody atmosphere, epic composition, highly detailed, 8k, cinematic color grading`,
-      num_steps: 28,
-      guidance: 7.5,
-      width: 1280,
-      height: 720,
+      prompt: `Cinematic masterpiece, Hollywood film still, ${prompt}, dramatic lighting, anamorphic lens flare, film grain, moody atmosphere, epic composition, highly detailed, 8k`,
+      steps: 8,           // max 8 for schnell
+      // width: 1024,     // optional - default is usually 1024x1024
+      // height: 1024,
+      seed: Math.floor(Math.random() * 4294967295),
     });
 
-    // Convert to base64 or upload to R2
-    const imageBuffer = imageResponse.image || imageResponse;
+    // The response contains base64 image
+    const base64Image = imageResponse.image;
+    if (!base64Image) {
+      throw new Error('No image returned from AI');
+    }
+
+    // Convert base64 to Uint8Array
+    const binaryString = atob(base64Image);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
 
     // Upload to R2
     const filename = `cinematic-${Date.now()}.jpg`;
-    await context.env.R2.put(filename, imageBuffer, {
+    await context.env.R2.put(filename, bytes, {
       httpMetadata: { contentType: 'image/jpeg' },
     });
 
-    const publicUrl = `https://epic-ai-media.${context.env.CF_ACCOUNT_ID ? 'r2.dev' : 'yourdomain.com'}/${filename}`;
+    const publicUrl = `https://epic-ai-media.r2.dev/${filename}`;  // Use your actual R2 public domain
 
-    // Store metadata in KV
-    await context.env.KV.put(`gen:${Date.now()}`, JSON.stringify({
-      prompt,
-      url: publicUrl,
-      timestamp: new Date().toISOString(),
-      model: 'flux-1-schnell'
-    }), { expirationTtl: 86400 * 30 });
+    // Optional: Store metadata in KV
+    await context.env.KV.put(
+      `gen:${Date.now()}`,
+      JSON.stringify({
+        prompt,
+        url: publicUrl,
+        timestamp: new Date().toISOString(),
+        model: 'flux-1-schnell'
+      }),
+      { expirationTtl: 86400 * 30 } // 30 days
+    );
 
     return Response.json({
       success: true,
@@ -53,16 +67,16 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   } catch (error: any) {
     console.error('Generation error:', error);
-    
-    // Fallback to placeholder for demo
-    const fallbackUrl = `https://picsum.photos/id/${Math.floor(Math.random() * 100) + 100}/1280/720`;
-    
+
+    // Fallback for demo / rate limits
+    const fallbackUrl = `https://picsum.photos/id/${Math.floor(Math.random() * 1000) + 100}/1280/720`;
+
     return Response.json({
       success: true,
       url: fallbackUrl,
       prompt: prompt || "Cinematic masterpiece",
       model: "FLUX.1-schnell (demo fallback)",
-      note: "Using placeholder due to AI binding/demo constraints",
+      note: "Using placeholder due to error or rate limit",
       timestamp: new Date().toISOString()
     });
   }
