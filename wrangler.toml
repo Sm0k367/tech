@@ -2,13 +2,26 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# Important for Pages
+# ====================
+# Cloudflare Pages Config
+# ====================
 pages_build_output_dir = "dist"
 
+# Observability (updated based on what you just showed)
 [observability]
 enabled = true
 
-# Bindings (you can also set these in the Pages dashboard)
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+
+[observability.traces]
+enabled = false   # Keep false unless you need tracing
+
+# ====================
+# Bindings (recommended)
+# ====================
+
 [[kv_namespaces]]
 binding = "KV"
 
