@@ -5,13 +5,13 @@ import { cloudflare } from '@cloudflare/vite-plugin';
 export default defineConfig({
   plugins: [
     react(),
-    cloudflare()  // This helps with Pages + Wrangler integration
+    cloudflare()   // Improves Wrangler + Pages integration
   ],
   build: {
     outDir: 'dist',
     rollupOptions: {
       output: {
-        manualChunks: undefined  // Helps keep build smaller for Pages
+        manualChunks: undefined
       }
     }
   }
