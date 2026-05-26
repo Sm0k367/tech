@@ -2,19 +2,14 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# For Cloudflare Pages
 pages_build_output_dir = "dist"
 
 [observability]
 enabled = true
 
-# Bindings - configure these in the Pages dashboard instead for best results
+# Bindings - configure most in Dashboard for Pages
 [[kv_namespaces]]
 binding = "KV"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "epic-ai-db"
 
 [[r2_buckets]]
 binding = "R2"
