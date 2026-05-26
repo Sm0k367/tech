@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=tech",
+    "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=ai-studio",
     "cf:dev": "wrangler pages dev dist --compatibility-flags nodejs_compat",
     "deploy": "npm run cf:deploy"
   },
