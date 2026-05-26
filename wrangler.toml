@@ -2,7 +2,7 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# === THIS IS WHAT MAKES /api/generate WORK ===
+# Required for Pages + Functions
 pages_build_output_dir = "dist"
 
 [observability]
