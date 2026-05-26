@@ -1,39 +1,43 @@
 name = "tech"
-account_id = "4f00441f1f72053ee62f67d115615dc2"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# This is a Cloudflare Pages project
+# === Pages Configuration ===
 pages_build_output_dir = "dist"
 
-# Observability configuration for Pages (logs enabled)
+# Optional: Enable logs
 [observability]
 enabled = true
-head_sampling_rate = 1
 
-[observability.logs]
-enabled = true
-head_sampling_rate = 1
-persist = true
-invocation_logs = true
+# ========================
+# Bindings (recommended to also add these in Cloudflare Dashboard)
+# ========================
 
+# KV Namespace
 [[kv_namespaces]]
 binding = "KV"
+id = "YOUR_KV_ID_HERE"          # ← Change this or remove if using dashboard
 
+# D1 Database
 [[d1_databases]]
 binding = "DB"
 database_name = "epic-ai-db"
+database_id = "YOUR_D1_ID_HERE"   # ← Change this or remove if using dashboard
 
+# R2 Bucket
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "epic-ai-media"
 
+# Vectorize Index
 [[vectorize]]
 binding = "VECTORIZE"
 index_name = "character-memory"
 
+# AI Gateway / Workers AI
 [ai]
 binding = "AI"
 
+# Images Binding (for image optimization)
 [images]
 binding = "IMAGES"
