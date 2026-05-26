@@ -3,6 +3,7 @@ account_id = "4f00441f1f72053ee62f67d115615dc2"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
+# This is a Pages project - we use pages_build_output_dir instead of main/assets
 pages_build_output_dir = "dist"
 
 [[kv_namespaces]]

@@ -7,7 +7,8 @@
     "preview": "vite preview",
     "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=tech",
     "cf:dev": "wrangler pages dev",
-    "deploy": "npm run cf:deploy"
+    "deploy": "npm run cf:deploy",
+    "pages:deploy": "npm run cf:deploy"
   },
   "dependencies": {
     "react": "^19.0.0-rc",
