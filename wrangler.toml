@@ -15,12 +15,12 @@ database_name = "epic-ai-db"
 binding = "R2"
 bucket_name = "epic-ai-media"
 
-[[vectorize_indexes]]
+[[vectorize]]
 binding = "VECTORIZE"
 index_name = "character-memory"
 
 [ai]
 binding = "AI"
 
-[[images]]
+[images]
 binding = "IMAGES"
