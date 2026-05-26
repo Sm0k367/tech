@@ -77,7 +77,11 @@ export default function App() {
                 <Mic className="w-9 h-9" />
               </button>
             </div>
-            <GenerateButton prompt={prompt} setGenerated={setGenerated} setAgents={() => {}} />
+            <GenerateButton 
+              prompt={prompt} 
+              setGenerated={setGenerated} 
+              setAgents={(updatedAgents) => console.log("Agent workflow updated:", updatedAgents)} 
+            />
           </div>
 
           <AnimatePresence>

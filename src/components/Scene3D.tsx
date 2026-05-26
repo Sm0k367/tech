@@ -66,7 +66,6 @@ function CinematicScene() {
         color="#a5b4fc"
         anchorX="center"
         anchorY="middle"
-        font="/fonts/inter.woff"
       >
         EPIC TECH AI
       </Text>
