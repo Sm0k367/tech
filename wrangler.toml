@@ -2,10 +2,22 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-pages_build_output_dir = "dist"
+# === Static Assets (this is what you need for your React app) ===
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
 
+# Observability
 [observability]
 enabled = true
+
+[observability.logs]
+enabled = true
+
+# ========================
+# Bindings
+# ========================
 
 [[kv_namespaces]]
 binding = "KV"
@@ -13,6 +25,10 @@ binding = "KV"
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "epic-ai-media"
+
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "character-memory"
 
 [ai]
 binding = "AI"
