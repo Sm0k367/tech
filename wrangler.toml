@@ -2,42 +2,34 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# === Pages Configuration ===
+# Pages specific
 pages_build_output_dir = "dist"
 
-# Optional: Enable logs
 [observability]
 enabled = true
 
 # ========================
-# Bindings (recommended to also add these in Cloudflare Dashboard)
+# Bindings (remove any that cause issues)
 # ========================
 
-# KV Namespace
 [[kv_namespaces]]
 binding = "KV"
-id = "YOUR_KV_ID_HERE"          # ← Change this or remove if using dashboard
+# id = ""   # Better to set this in the Cloudflare Dashboard
 
-# D1 Database
 [[d1_databases]]
 binding = "DB"
 database_name = "epic-ai-db"
-database_id = "YOUR_D1_ID_HERE"   # ← Change this or remove if using dashboard
+# database_id = ""   # Set in Dashboard
 
-# R2 Bucket
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "epic-ai-media"
 
-# Vectorize Index
 [[vectorize]]
 binding = "VECTORIZE"
 index_name = "character-memory"
 
-# AI Gateway / Workers AI
 [ai]
 binding = "AI"
 
-# Images Binding (for image optimization)
-[images]
-binding = "IMAGES"
+# [images]   ← Removed (not supported on Pages via wrangler.toml)
