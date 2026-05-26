@@ -2,12 +2,13 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
+# Important for Pages
 pages_build_output_dir = "dist"
 
 [observability]
 enabled = true
 
-# Bindings - configure most in Dashboard for Pages
+# Bindings (you can also set these in the Pages dashboard)
 [[kv_namespaces]]
 binding = "KV"
 
