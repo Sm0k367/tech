@@ -6,9 +6,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=tech",
-    "cf:dev": "wrangler pages dev",
-    "deploy": "npm run cf:deploy",
-    "pages:deploy": "npm run cf:deploy"
+    "cf:dev": "wrangler pages dev --compatibility-flags nodejs_compat",
+    "deploy": "npm run cf:deploy"
   },
   "dependencies": {
     "react": "^19.0.0-rc",
