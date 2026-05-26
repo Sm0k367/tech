@@ -3,8 +3,19 @@ account_id = "4f00441f1f72053ee62f67d115615dc2"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# This is a Pages project - we use pages_build_output_dir instead of main/assets
+# This is a Cloudflare Pages project
 pages_build_output_dir = "dist"
+
+# Observability configuration for Pages (logs enabled)
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
 
 [[kv_namespaces]]
 binding = "KV"
