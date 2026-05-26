@@ -1,15 +1,10 @@
-name = "ai-studio"
-compatibility_date = "2026-05-26"
+name = "tech"
+compatibility_date = "2025-05-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Required for Pages + Functions
+# Required for Cloudflare Pages Functions
 pages_build_output_dir = "dist"
 
-# Observability (optional but useful)
-[observability]
-enabled = true
-
-# Bindings
 [[kv_namespaces]]
 binding = "KV"
 

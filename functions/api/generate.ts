@@ -1,6 +1,26 @@
 import { Ai } from '@cloudflare/ai';
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequest: PagesFunction = async (context) => {
+  if (context.request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    });
+  }
+
+  if (context.request.method !== 'POST') {
+    return Response.json({ success: false, error: 'Method not allowed' }, { status: 405 });
+  }
+
+  const { prompt, turnstileToken, model } = await context.request.json();
+
+  if (!prompt) {
+    return Response.json({ success: false, error: 'Prompt is required' }, { status: 400 });
+  }
+
   try {
     const { prompt, model = '@cf/black-forest-labs/flux-1-schnell' } = await context.request.json();
 
