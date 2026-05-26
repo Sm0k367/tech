@@ -2,10 +2,8 @@ name = "tech"
 compatibility_date = "2026-05-26"
 compatibility_flags = ["nodejs_compat"]
 
-# Static assets (your React + Three.js app)
-[assets]
-directory = "./dist"
-not_found_handling = "single-page-application"
+# === THIS IS WHAT MAKES /api/generate WORK ===
+pages_build_output_dir = "dist"
 
 [observability]
 enabled = true
@@ -13,7 +11,7 @@ enabled = true
 [observability.logs]
 enabled = true
 
-# Your bindings
+# Bindings
 [[kv_namespaces]]
 binding = "KV"
 
