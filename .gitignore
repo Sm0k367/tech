@@ -1,4 +1,29 @@
-node_modules/
-dist/
+# dependencies
+/node_modules
+/.npm
+/.wrangler
+
+# build output
+/dist
+
+# local env
 .env
-*.log
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor
+.vscode
+.idea
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# wrangler
+.wrangler
